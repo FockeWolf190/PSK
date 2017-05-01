@@ -16,14 +16,14 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Flight.findAll", query = "SELECT f FROM Flight f"),
         @NamedQuery(name = "Flight.findById", query = "SELECT f FROM Flight f WHERE f.id = :id"),
-        @NamedQuery(name = "Flight.findByDepert", query = "SELECT f FROM Flight f WHERE f.depart LIKE :depart"),
-        @NamedQuery(name = "Flight.findByArive", query = "SELECT f FROM Flight f WHERE f.Arive LIKE :Arive"),
+        @NamedQuery(name = "Flight.findByDepart", query = "SELECT f FROM Flight f WHERE f.depart LIKE :depart"),
+        @NamedQuery(name = "Flight.findByArrive", query = "SELECT f FROM Flight f WHERE f.Arive LIKE :Arive"),
         @NamedQuery(name = "Flight.findByPlaneId", query = "SELECT f FROM Flight f WHERE f.PlaneId LIKE :PlaneId")
 })
 @Getter
 @Setter
 //@EqualsAndHashCode(of = "registrationNo")
-@ToString(of = {"id", "depart", "arive", "planeId"})
+@ToString(of = {"id", "depart", "arrive", "planeId"})
 public class Flight implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,8 +37,8 @@ public class Flight implements Serializable {
     private String depart;
 
     @Size(min = 3, max = 3)
-    @Column(name = "ARIVE")
-    private String arive;
+    @Column(name = "ARRIVE")
+    private String arrive;
 
     @Column(name = "PLANE_ID ")
     private String planeId;
@@ -52,7 +52,7 @@ public class Flight implements Serializable {
             @JoinColumn(name = "PASSENGER_ID", referencedColumnName = "ID")})
 
     @ManyToMany
-    private List<Passenger> pasengerList = new ArrayList<>();
+    private List<Passenger> passengerList = new ArrayList<>();
 
     @JoinColumn(name = "Plane_ID", referencedColumnName = "ID")
     @ManyToOne
