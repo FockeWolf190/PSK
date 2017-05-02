@@ -2,12 +2,14 @@ package lt.vu.usecases.cdi.simple;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import lt.vu.usecases.mybatis.dao.CourseMapper;
-import lt.vu.usecases.mybatis.dao.StudentCourseMapper;
-import lt.vu.usecases.mybatis.dao.StudentMapper;
-import lt.vu.usecases.mybatis.model.Course;
-import lt.vu.usecases.mybatis.model.Student;
-import lt.vu.usecases.mybatis.model.StudentCourse;
+import lt.vu.usecases.mybatis.dao.FlightMapper;
+import lt.vu.usecases.mybatis.dao.FlightPassengerMapper;
+import lt.vu.usecases.mybatis.dao.PassengerMapper;
+import lt.vu.usecases.mybatis.dao.PlaneMapper;
+import lt.vu.usecases.mybatis.model.Flight;
+import lt.vu.usecases.mybatis.model.FlightPassenger;
+import lt.vu.usecases.mybatis.model.Passenger;
+import lt.vu.usecases.mybatis.model.Plane;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
@@ -19,29 +21,35 @@ import java.util.List;
 public class RequestUseCaseControllerMyBatis {
 
     @Getter
-    private Course course = new Course();
+    private Flight flight = new Flight();
     @Getter
-    private Student student = new Student();
+    private Plane plane = new Plane();
+    @Getter
+    private FlightPassenger flightPassenger = new FlightPassenger();
+    @Getter
+    private Passenger passenger = new Passenger();
 
     @Inject
-    private StudentMapper studentMapper;
+    private FlightMapper flightMapper;
     @Inject
-    private CourseMapper courseMapper;
+    private FlightPassengerMapper flightPassengerMapper;
     @Inject
-    private StudentCourseMapper studentCourseMapper;
+    private PassengerMapper passengerMapper;
+    @Inject
+    private PlaneMapper planeMapper;
 
-    public List<lt.vu.usecases.mybatis.model.Student> getAllStudents() {
-        return studentMapper.selectAll();
+    public List<lt.vu.usecases.mybatis.model.Flight> getAllFlights() {
+        return flightMapper.selectAll();
     }
 
     @Transactional
-    public void createCourseStudent() {
-        courseMapper.insert(course);
-        studentMapper.insert(student);
-        StudentCourse studentCourse = new StudentCourse();
-        studentCourse.setCourseId(course.getId());
-        studentCourse.setStudentId(student.getId());
-        studentCourseMapper.insert(studentCourse);
+    public void createFlightPassenger() {
+        flightMapper.insert(flight);
+        passengerMapper.insert(passenger);
+        FlightPassenger flightPassenger = new FlightPassenger();
+        flightPassenger.setFlightId(flight.getId());
+        flightPassenger.setPassengerId(passenger.getId());
+        flightPassengerMapper.insert(flightPassenger);
         log.info("Maybe OK...");
     }
 }

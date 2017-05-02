@@ -13,52 +13,49 @@
 <h:body>
     <h1>Request type usecase example (DAO with MyBatis)</h1>
     <h:form>
-        <p:fieldset legend="All students" toggleable="true" style="width: 50%">
-            <p:dataTable value="#{requestUseCaseControllerMyBatis.getAllStudents()}" var="student">
-                <p:column headerText="Student">
-                    <h:outputText value="#{student.firstName} #{student.lastName} #{student.registrationNo}" />
-                </p:column>
-                <p:column headerText="Courses">
-                    <ui:repeat var="course" value="#{student.courses}">
-                        <h:outputText value="#{course.name} " />
-                    </ui:repeat>
-                </p:column>
-                <p:column headerText="University">
-                    <h:outputText value="#{student.university.title} " />
+        <p:fieldset legend="All flights" toggleable="true" style="width: 50%">
+            <p:dataTable value="#{requestUseCaseControllerMyBatis.getAllFlights()}" var="flight">
+                <p:column headerText="Passenger">
+                    <h:outputText value="#{flight.depart} #{flight.arrive}" />
                 </p:column>
             </p:dataTable>
         </p:fieldset>
 
-        <h2>Create new course and student</h2>
+        <h2>Create new flight and passenger</h2>
         <table>
             <tr>
                 <td>
                     <h:panelGrid columns="3">
                         <p:outputLabel for="firstName" value="First name"/>
-                        <p:inputText id="firstName" value="#{requestUseCaseControllerMyBatis.student.firstName}"/>
+                        <p:inputText id="firstName" value="#{requestUseCaseControllerMyBatis.passenger.firstName}"/>
                         <p:message for="firstName"/>
 
                         <p:outputLabel for="lastName" value="Last name"/>
-                        <p:inputText id="lastName" value="#{requestUseCaseControllerMyBatis.student.lastName}"/>
+                        <p:inputText id="lastName" value="#{requestUseCaseControllerMyBatis.passenger.lastName}"/>
                         <p:message for="lastName"/>
 
                         <p:outputLabel for="regnr" value="Registration No."/>
-                        <p:inputText id="regnr" value="#{requestUseCaseControllerMyBatis.student.registrationNo}"/>
+                        <p:inputText id="regnr" value="#{requestUseCaseControllerMyBatis.passenger.country}"/>
                         <p:message for="regnr"/>
                     </h:panelGrid>
                 </td>
                 <td>
                     <h:panelGrid columns="3">
-                        <p:outputLabel for="courseName" value="Course name"/>
-                        <p:inputText id="courseName" value="#{requestUseCaseControllerMyBatis.course.name}"/>
-                        <p:message for="courseName"/>
+                        <p:outputLabel for="depart" value="Depart"/>
+                        <p:inputText id="depart" value="#{requestUseCaseControllerMyBatis.flight.depart}"/>
+                        <p:message for="depart"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="3">
+                        <p:outputLabel for="arrive" value="Arrive"/>
+                        <p:inputText id="arrive" value="#{requestUseCaseControllerMyBatis.flight.arrive}"/>
+                        <p:message for="arrive"/>
                     </h:panelGrid>
                 </td>
             </tr>
         </table>
 
         <p:commandButton value="Create student and course"
-                         actionListener="#{requestUseCaseControllerMyBatis.createCourseStudent()}"
+                         actionListener="#{requestUseCaseControllerMyBatis.createFlightPassenger}"
                          ajax="false"/>
 
         <p:messages globalOnly="true"/>
