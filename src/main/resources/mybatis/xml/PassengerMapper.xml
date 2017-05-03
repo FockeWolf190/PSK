@@ -11,6 +11,13 @@
     <result column="FIRST_NAME" jdbcType="VARCHAR" property="firstName" />
     <result column="LAST_NAME" jdbcType="VARCHAR" property="lastName" />
     <result column="COUNTRY" jdbcType="VARCHAR" property="country" />
+
+
+
+    <!-- Rankomis prirašytas ryšiui ManyToMany Student - Course -->
+    <!-- Nested select (yra N+1 select problema) -->
+    <!--<collection property="flights" javaType="ArrayList" column="id" ofType="Flight" select="selectFlightsForPassenger"/>-->
+
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
@@ -63,4 +70,16 @@
     select ID, FIRST_NAME, LAST_NAME, COUNTRY
     from PUBLIC.PASSENGER
   </select>
+
+  <!--<select id="selectFlightsForPassenger" resultType="Flight">-->
+    <!--SELECT-->
+    <!--c.id,-->
+    <!--c.ARRIVE,-->
+    <!--c.DEPART,-->
+    <!--c.PLANE_ID-->
+    <!--FROM public.flight c-->
+    <!--JOIN public.FLIGHT_PASSENGER sc on c.id = sc.flight_id-->
+    <!--WHERE sc.passenger_id = #{id,jdbcType=INTEGER}-->
+  <!--</select>-->
+
 </mapper>

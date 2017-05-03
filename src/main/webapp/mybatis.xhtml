@@ -13,13 +13,13 @@
 <h:body>
     <h1>Request type usecase example (DAO with MyBatis)</h1>
     <h:form>
-        <p:fieldset legend="All flights" toggleable="true" style="width: 50%">
-            <p:dataTable value="#{requestUseCaseControllerMyBatis.getAllFlights()}" var="flight">
-                <p:column headerText="Passenger">
-                    <h:outputText value="#{flight.depart} #{flight.arrive}" />
-                </p:column>
-            </p:dataTable>
-        </p:fieldset>
+        <!--<p:fieldset legend="All flights" toggleable="true" style="width: 50%">-->
+            <!--<p:dataTable value="#{requestUseCaseControllerMyBatis.getAllFlights()}" var="flight">-->
+                <!--<p:column headerText="Flight">-->
+                    <!--<h:outputText value="#{flight.depart} #{flight.arrive}" />-->
+                <!--</p:column>-->
+            <!--</p:dataTable>-->
+        <!--</p:fieldset>-->
 
         <h2>Create new flight and passenger</h2>
         <table>
@@ -34,7 +34,7 @@
                         <p:inputText id="lastName" value="#{requestUseCaseControllerMyBatis.passenger.lastName}"/>
                         <p:message for="lastName"/>
 
-                        <p:outputLabel for="regnr" value="Registration No."/>
+                        <p:outputLabel for="regnr" value="Country"/>
                         <p:inputText id="regnr" value="#{requestUseCaseControllerMyBatis.passenger.country}"/>
                         <p:message for="regnr"/>
                     </h:panelGrid>

@@ -50,8 +50,8 @@ public class Passenger implements Serializable {
     @Column(name = "OPT_LOCK_VERSION")
     private Integer optLockVersion;
 
-    @ManyToMany
-    private List<Course> flightList = new ArrayList<>();
+    @ManyToMany(mappedBy = "passengerList")
+    private List<Flight> flightList = new ArrayList<>();
 
 
 }

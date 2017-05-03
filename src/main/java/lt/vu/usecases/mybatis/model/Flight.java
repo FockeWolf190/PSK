@@ -16,6 +16,5 @@ public class Flight {
     private Integer planeId;
 
     private List<Passenger> passengers;
-
-
+    private Plane plane;
 }

@@ -11,6 +11,14 @@
     <result column="DEPART" jdbcType="VARCHAR" property="depart" />
     <result column="ARRIVE" jdbcType="VARCHAR" property="arrive" />
     <result column="PLANE_ID" jdbcType="INTEGER" property="planeId" />
+
+    <association property="plane" resultMap="lt.vu.usecases.mybatis.dao.PlaneMapper.BaseResultMap"
+                 columnPrefix="plane_"/>
+
+    <!-- Rankomis prirašytas ryšiui ManyToMany Student - Course -->
+    <!-- Nested select (yra N+1 select problema) -->
+    <collection property="passengers" javaType="ArrayList" column="id" ofType="Passenger" select="selectPassengerForFlight"/>
+
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
@@ -62,5 +70,16 @@
     -->
     select ID, DEPART, ARRIVE, PLANE_ID
     from PUBLIC.FLIGHT
+  </select>
+
+  <select id="selectPassengerForFlight" resultType="Passenger">
+    SELECT
+    c.id,
+    c.FIRST_NAME,
+    c.LAST_NAME,
+    c.COUNTRY
+    FROM public.PASSENGER c
+    JOIN public.FLIGHT_PASSENGER sc on c.id = sc.PASSENGER_ID
+    WHERE sc.FLIGHT_ID = #{id,jdbcType=INTEGER}
   </select>
 </mapper>

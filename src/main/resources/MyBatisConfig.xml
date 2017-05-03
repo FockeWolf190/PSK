@@ -19,10 +19,10 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mybatis/xml/PlaneMapper.xml"/>
-        <mapper resource="mybatis/xml/FlightMapper.xml"/>
         <mapper resource="mybatis/xml/PassengerMapper.xml"/>
+        <mapper resource="mybatis/xml/FlightMapper.xml"/>
         <mapper resource="mybatis/xml/FlightPassengerMapper.xml"/>
+        <mapper resource="mybatis/xml/PlaneMapper.xml"/>
     </mappers>
 </configuration>
 
